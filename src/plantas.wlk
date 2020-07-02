@@ -1,5 +1,6 @@
-class Plantas {
+import parcelas.*
 
+class Plantas {
 	const property anioDeObtencion
 	var property altura
 
@@ -16,17 +17,22 @@ class Plantas {
 	}
 
 	method espacioQueOcupa() // Medido en Metros cuadrados. Metodo Abstracto.
-
+	
+	method esParcelaIdeal(unaParcela) // Metodo abstracto.
 }
 
 class Menta inherits Plantas {
-
+	
 	override method daNuevasSemillas() {
 		return super() and self.espacioQueOcupa() >= 1
 	}
 
 	override method espacioQueOcupa() {
 		return altura * 3
+	}
+	
+	override method esParcelaIdeal(unaParcela){
+		return unaParcela.superficie() > 6
 	}
 
 }
@@ -43,6 +49,10 @@ class Soja inherits Plantas {
 
 	override method espacioQueOcupa() {
 		return altura / 2
+	}
+	
+	override method esParcelaIdeal(unaParcela){
+		return unaParcela.horasDeSolDiarias() == self.horasDeSolQueTolera()
 	}
 
 }
@@ -62,7 +72,10 @@ class Quinoa inherits Plantas {
 	override method espacioQueOcupa() {
 		return espacioQueOcupa
 	}
-
+	
+	override method esParcelaIdeal(unaParcela){
+		return unaParcela.plantas().all({planta => planta.altura() < 1.5})
+	}
 }
 
 //Variedades
@@ -71,6 +84,10 @@ class SojaTransgenica inherits Soja{
 	
 	override method daNuevasSemillas() {
 		return false
+	}
+	
+	override method esParcelaIdeal(unaParcela){
+		return unaParcela.cantidadMaximaDePlantas() == 1
 	}
 }
 
