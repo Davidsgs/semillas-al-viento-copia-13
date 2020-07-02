@@ -1,19 +1,26 @@
 import plantas.*
+import parcelas.*
+
+// Menta
+const menta = new Menta(anioDeObtencion = 2002, altura = 1)
+
+const menta2 = new Menta(anioDeObtencion = 2013, altura = 0.3)
+
+// Soja
+const soja = new Soja(anioDeObtencion = 2009, altura = 0.6)
+
+// Quinoa
+const quinoa = new Quinoa(anioDeObtencion = 2010, altura = 0.1, espacioQueOcupa = 0.2)
+
+const quinoa2 = new Quinoa(anioDeObtencion = 2003, altura = 0.1, espacioQueOcupa = 0.9)
+
+// Soja Transgenica
+const sojaTrans = new SojaTransgenica(anioDeObtencion = 2010, altura = 0.6)
+
+// Hierba buena
+const hierbaBuena = new Hierbabuena(anioDeObtencion = 2002, altura = 1) // Es igual a "menta"
 
 describe "Test de Plantas" {
-
-	// Menta
-	const menta = new Menta(anioDeObtencion = 2002, altura = 1)
-	const menta2 = new Menta(anioDeObtencion = 2013, altura = 0.3)
-	// Soja
-	const soja = new Soja(anioDeObtencion = 2009, altura = 0.6)
-	// Quinoa
-	const quinoa = new Quinoa(anioDeObtencion = 2010, altura = 1, espacioQueOcupa = 0.2)
-	const quinoa2 = new Quinoa(anioDeObtencion = 2003, altura = 1, espacioQueOcupa = 0.9)
-	// Soja Transgenica
-	const sojaTrans = new SojaTransgenica(anioDeObtencion = 2010, altura = 0.6)
-	// Hierba buena
-	const hierbaBuena = new Hierbabuena(anioDeObtencion = 2002, altura = 1) // Es igual a "menta"
 
 	test "Menta" {
 		// En el enunciado dice que deberia ser cierto esta condicion.
@@ -44,6 +51,34 @@ describe "Test de Plantas" {
 
 	test "Hierbabuena" {
 		assert.equals(menta.espacioQueOcupa() * 2, hierbaBuena.espacioQueOcupa())
+	}
+
+}
+
+describe "Parcelas Ideales" {
+
+	// Esta es la misma parcela usada en el test de parcelas.
+	const parcela = new Parcela(ancho = 10, largo = 1, horasDeSolDiarias = 10)
+	const soja2 = new Soja(anioDeObtencion = 2009, altura = 1.1)
+	const soja3 = new Soja(anioDeObtencion = 2009, altura = 1.6)
+	
+	test "Menta" {
+		assert.that(menta.esParcelaIdeal(parcela))
+	}
+	
+	test "Quinoa" {
+		parcela.plantar(soja2)
+		assert.that(quinoa.esParcelaIdeal(parcela))
+		parcela.plantar(soja3)
+		assert.notThat(quinoa.esParcelaIdeal(parcela))
+	}
+	
+	test "Soja"{
+		assert.notThat(soja.esParcelaIdeal(parcela))
+	}
+	
+	test "Soja Transgenica"{
+		assert.notThat(soja.esParcelaIdeal(parcela))
 	}
 
 }
