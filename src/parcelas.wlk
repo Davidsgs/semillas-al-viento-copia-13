@@ -39,3 +39,15 @@ class Parcela {
 		}
 	}
 }
+
+class Ecologica inherits Parcela{
+	method seAsociaBien(unaPlanta){
+		return not self.tieneComplicaciones() and unaPlanta.esParcelaIdeal(self)
+	}
+}
+
+class Industrial inherits Parcela{
+	method seAsociaBien(unaPlanta){
+		return plantas.size() <= 2 and unaPlanta.esFuerte()
+	}
+}
