@@ -4,6 +4,10 @@ import plantas.*
 object inta {
 	const property parcelas = #{}
 	
+	method agregarParcela(unaParcela){
+		parcelas.add(unaParcela)
+	}
+	
 	method cantidadDeParcelas(){
 		return parcelas.size()
 	}

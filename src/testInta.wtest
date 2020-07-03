@@ -1,0 +1,33 @@
+import inta.*
+import parcelas.*
+import plantas.*
+
+describe "Test Inta"{
+	
+	const soja = new Soja(anioDeObtencion = 2009, altura = 2)
+	const parcelaEco = new Ecologica(ancho = 10,largo = 1,horasDeSolDiarias = 12)
+	const parcelaInd = new Industrial(ancho = 10,largo = 1,horasDeSolDiarias = 10)
+	
+	fixture{
+		parcelaInd.plantar(soja)
+		parcelaInd.plantar(soja)
+		parcelaInd.plantar(soja)
+		parcelaInd.plantar(soja)
+		
+		parcelaEco.plantar(soja)
+		parcelaEco.plantar(soja)
+		parcelaEco.plantar(soja)
+		parcelaEco.plantar(soja)
+		
+		inta.agregarParcela(parcelaEco)
+		inta.agregarParcela(parcelaInd)
+	}
+	
+	test "Promedio de plantas por parcela "{
+		assert.equals(4,inta.promedioDePlantas())
+	}
+	
+	test "Parcela mas autosustentable"{
+		assert.equals(parcelaEco,inta.parcelaMasAutosustentable())
+	}
+}
