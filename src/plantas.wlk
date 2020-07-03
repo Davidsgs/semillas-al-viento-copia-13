@@ -19,6 +19,10 @@ class Plantas {
 	method espacioQueOcupa() // Medido en Metros cuadrados. Metodo Abstracto.
 	
 	method esParcelaIdeal(unaParcela) // Metodo abstracto.
+	
+	method seAsociaBien(parcelaEcologicaOIndustrial){
+		return parcelaEcologicaOIndustrial.seAsociaBien(self)
+	}
 }
 
 class Menta inherits Plantas {
