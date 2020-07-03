@@ -1,33 +1,35 @@
 import parcelas.*
 import plantas.*
 
-describe "Test de Parcelas"{
-	const parcela = new Parcela(ancho = 10,largo = 1,horasDeSolDiarias = 10)
-	const soja = new Soja(anioDeObtencion = 2009 ,altura = 2)
-	
-	fixture{
-		//plantamos 5 sojas.
+describe "Test de Parcelas" {
+
+	const parcela = new Parcela(ancho = 10, largo = 1, horasDeSolDiarias = 10)
+	const soja = new Soja(anioDeObtencion = 2009, altura = 2)
+
+	fixture {
+		// plantamos 5 sojas.
 		parcela.plantar(soja)
 		parcela.plantar(soja)
 		parcela.plantar(soja)
 		parcela.plantar(soja)
 		parcela.plantar(soja)
-		
 	}
-	
-	test "Superficie"{
-		assert.equals(10,parcela.superficie())
+
+	test "Superficie" {
+		assert.equals(10, parcela.superficie())
 	}
-	
-	test "Cantidad Maxima"{
-		assert.equals(5,parcela.cantidadMaximaDePlantas())
+
+	test "Cantidad Maxima" {
+		assert.equals(5, parcela.cantidadMaximaDePlantas())
 	}
-	
-	test "No hay complicaciones!"{
+
+	test "No hay complicaciones!" {
 		assert.notThat(parcela.tieneComplicaciones())
 	}
-	
-	test "Error al plantar demás"{
-		assert.throwsException{parcela.plantar(soja)}
+
+	test "Error al plantar demás" {
+		assert.throwsException{ parcela.plantar(soja)}
 	}
+
 }
+
