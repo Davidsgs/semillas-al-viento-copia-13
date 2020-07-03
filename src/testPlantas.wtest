@@ -83,3 +83,25 @@ describe "Parcelas Ideales" {
 
 }
 
+describe "Asociacion de Plantas"{
+	
+	const soja = new Soja(anioDeObtencion = 2009, altura = 2)
+	const parcelaEco = new Ecologica(ancho = 10,largo = 1,horasDeSolDiarias = 12)
+	const parcelaInd = new Industrial(ancho = 10,largo = 1,horasDeSolDiarias = 10)
+	
+	test "Parcela Ecologica"{
+		assert.that(soja.seAsociaBien(parcelaEco))
+		parcelaEco.horasDeSolDiarias(11)
+		assert.notThat(soja.seAsociaBien(parcelaEco))
+	}
+	
+	test "Parcela Industrial"{
+		assert.that(soja.seAsociaBien(parcelaInd))
+		
+		parcelaInd.plantar(soja)
+		parcelaInd.plantar(soja)
+		parcelaInd.plantar(soja)
+		
+		assert.notThat(soja.seAsociaBien(parcelaInd))
+	}
+}
